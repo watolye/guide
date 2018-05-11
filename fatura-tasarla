@@ -1,0 +1,38 @@
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.js"></script>
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.1/themes/base/jquery-ui.css"/>
+
+<STYLE>
+.demo, .demo2 {
+	width:150px;
+	height:150px;
+	padding:5px;
+	background-color:#ff8811;
+	position:absolute;
+	top:150px;
+	left:300px;
+}
+#content { padding-bottom: 3em; }
+</STYLE>
+
+<div id="container">
+<div class="demo">Move Me!!... Resize Me!!...</div>
+<div class="demo2">Move Me!!... Resize Me!!...</div>
+
+
+<SCRIPT>
+$(function(){
+	$('.demo, .demo2') .draggable() .resizable();
+});
+
+jQuery('#container').click(function(){
+		var d1p = jQuery('.demo').position();
+		var d1h = jQuery('.demo').height();
+		var d1w = jQuery('.demo').width();
+		var data = {"ne" : "n1", "l" : d1p.left, "t" : d1p.top, "w" : d1w, "h" : d1h};
+
+		jQuery.ajax({
+			type:'POST', data:data, dataType:'json', url:'fonksiyon.php?durum=ftasarim'
+		});
+});		
+</SCRIPT>
